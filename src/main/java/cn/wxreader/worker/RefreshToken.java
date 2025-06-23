@@ -89,7 +89,11 @@ public class RefreshToken {
     }
 
     private String getWrName() {
-        String keyName = wxReaderHeader.keySet().stream().filter(key -> key.toLowerCase().contains("cookie")).findFirst().orElse(null);
+        String keyName = wxReaderHeader.keySet()
+                .stream()
+                .filter(key -> key.toLowerCase().contains("cookie"))
+                .findFirst()
+                .orElse(null);
         String wrName = Arrays.stream(wxReaderHeader.getString(keyName).split(";"))
                 .filter(s -> s.contains("wr_name"))
                 .collect(Collectors.toList())

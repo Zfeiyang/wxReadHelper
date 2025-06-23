@@ -21,9 +21,9 @@ public class WxReadHelper {
         for (User user : users) {
             executorService.submit(() -> {
                 try {
-                    String readRes = new Read(user).startRead();
-                    new Push(user, readRes).push(WxTaskEnum.READ);
+                    new Read(user).startRead();
                 } catch (Exception e) {
+                    new Push(user, e.getMessage()).push(WxTaskEnum.READ);
                     log.error("Exception in thread for user: {}", user, e);
                 }
             });
